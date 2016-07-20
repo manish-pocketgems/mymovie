@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <title>Submit Movie</title>
+    </head>
+    <body>
+        <a href="/" class="btn btn-info" role="button" style="margin-top:3%; margin-left:12%">Home</a>
+        <div class="container">
+            <h3>Recommend a Movie</h3>
+            % for i, result in enumerate(results):
+                <form class="form-signin" role="form" action="/submit" method="post">
+                    <input type="hidden" name="title" value="${result['title']}">
+                    <input type="hidden" name="overview" value="${result['overview']}">
+                    <input type="hidden" name="poster" value="${result['poster']}">
+                    <input type="hidden" name="trailer_url" value="${result['trailer_url']}">
+                    <div class='row center-block'>
+                        <div class='col-md-3'>
+                            <img style='height:250px; margin:25px;' src=${result['poster']}>
+                        </div>
+
+                        <div class='col-md-5' style='margin-top:25px;'>
+                            <h3>${result['title']}</h3>
+                            <p>${result['overview']}</p>
+                            <button class="btn btn-primary" id="submit" type="submit">Submit</button>
+                        </div>
+                        <div class='col-md-4' style='margin-top:25px;'>
+                            <iframe style="height:250px;" src=${result['trailer_url']} allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </form>
+            % endfor
+        </div>
+    </body>
+</html>
