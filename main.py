@@ -25,9 +25,9 @@ class Movie(ndb.Model):
     # disable builtin memcache and context cache
     _use_cache = _use_memcache = False
     title = ndb.StringProperty(indexed=True, required=True)
-    overview = ndb.TextProperty(indexed=True, required=True)
-    trailer = ndb.StringProperty(indexed=True, required=True)
-    poster = ndb.StringProperty(indexed=True, required=True)
+    overview = ndb.TextProperty(indexed=False, required=True)
+    trailer = ndb.StringProperty(indexed=False, required=True)
+    poster = ndb.StringProperty(indexed=False, required=True)
     average_rating = ndb.ComputedProperty(lambda self: self.calc_avg_rating(),
                                           indexed=True)
     total_rating = ndb.IntegerProperty(indexed=True, default=0)
